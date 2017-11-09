@@ -1,9 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
-project(install-project)
+project(test_tensorflow_cpp)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
-set(EXECUTABLE install-project)
 
 # add modules
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/Modules")
@@ -18,11 +16,11 @@ set(PROJECT_LIBRARIES ${TensorFlow_LIBRARIES} ${PROTOBUF_LIBRARIES})
 
 file(GLOB_RECURSE SRC_FILES "src/*.cpp" "src/*.h" "src/*.inl" )
 
-add_executable(${EXECUTABLE} ${SRC_FILES})
+add_executable(${PROJECT_NAME} ${SRC_FILES})
 
 include_directories(${TensorFlow_INCLUDE_DIRS})
 include_directories(${EIGEN3_INCLUDE_DIR})
 include_directories(${Protobuf_INCLUDE_DIRS})
 
-target_link_libraries(${EXECUTABLE} ${TensorFlow_LIBRARIES})
-target_link_libraries(${EXECUTABLE} ${Protobuf_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${TensorFlow_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${Protobuf_LIBRARIES})
